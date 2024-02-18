@@ -1,0 +1,13 @@
+### Resource Owner Password Credentials Grant Flow with Confidential Client
+POST http://localhost:8080/auth/realms/opademo/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=app7-password-grant&client_secret=secret&username=tester&password=test&grant_type=password&scope=profile
+
+###
+
+### Client Credentials Grant
+POST http://localhost:8080/auth/realms/opademo/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=app8-client-credentials&client_secret=secret&grant_type=client_credentials

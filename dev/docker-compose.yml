@@ -1,0 +1,72 @@
+services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.6
+    environment:
+      KC_HTTP_RELATIVE_PATH: "/auth"
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      DEBUG: "true"
+      DEBUG_PORT: "*:8787"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "127.0.0.1:8787:8787"
+
+    command:
+      - "--verbose"
+      - "start-dev"
+      - "--http-enabled=true"
+      - "--http-port=8080"
+      - "--metrics-enabled=true"
+      - "--health-enabled=true"
+      - "--cache=local"
+      - "--proxy=edge"
+      - "--spi-events-listener-jboss-logging-success-level=info"
+      - "--spi-events-listener-jboss-logging-error-level=warn"
+      - "--log-level=INFO,com.thomasdarimont.keycloak:DEBUG,org.keycloak.services.clientpolicy:DEBUG"
+      - "--spi-access-policy-opa-url=http://keycloak-opa:8181/v1/data"
+      - "--spi-access-policy-opa-policy-path=/keycloak/realms/{realm}/{action}/allow"
+      - "--spi-access-policy-opa-context-attributes=remoteAddress,protocol,grantType"
+      - "--spi-access-policy-opa-user-attributes=email,emailVerified"
+    volumes:
+      - ../target/keycloak-opa.jar:/opt/keycloak/providers/keycloak-opa.jar:z
+      - ./keycloak/providers/keycloak-restrict-client-auth.jar:/opt/keycloak/providers/keycloak-restrict-client-auth.jar:z
+#      - ./keycloak/quarkus.properties:/opt/keycloak/conf/quarkus.properties:z
+
+  keycloak-opa:
+    image: openpolicyagent/opa:0.61.0
+    platform: linux/amd64
+    command:
+      - run
+      - --log-level
+      - debug
+      - --server
+      - --set
+      - "decision_logs.console=true"
+      # Watch for changes in policy folder
+      - "--watch"
+      - "/policies"
+    volumes:
+      - ./opa/policies:/policies:z
+    ports:
+      - "8181:8181"
+
+  keycloak-provisioning:
+    image: quay.io/adorsys/keycloak-config-cli:5.10.0-23.0.1
+    environment:
+      KEYCLOAK_URL: http://keycloak:8080/auth
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_AVAILABILITYCHECK_ENABLED: "true"
+      KEYCLOAK_AVAILABILITYCHECK_TIMEOUT: "120s"
+      # see: https://github.com/adorsys/keycloak-config-cli/blob/v5.0.0/CHANGELOG.md
+      IMPORT_FILES_LOCATION: "/config/*" # IMPORT_PATH: "/config"
+      IMPORT_CACHE_ENABLED: "true" # IMPORT_FORCE: "false"
+      IMPORT_VAR_SUBSTITUTION_ENABLED: "true" # IMPORT_VARSUBSTITUTION: "true"
+      IMPORT_VALIDATE: "true"
+      KEYCLOAK_FRONTEND_URL: "http://localhost:8080/auth"
+    # See https://github.com/adorsys/keycloak-config-cli#log-level
+    #      LOGGING_LEVEL_KEYCLOAKCONFIGCLI: "debug"
+    volumes:
+      - ./config/realms:/config:z

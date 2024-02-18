@@ -1,0 +1,356 @@
+realm: opademo
+enabled: true
+displayName: opademo
+
+loginWithEmailAllowed: true
+resetPasswordAllowed: true
+sslRequired: $(env:SSL_REQUIRED:-EXTERNAL)
+
+loginTheme: keycloak
+accountTheme: keycloak.v3
+emailTheme: keycloak
+
+eventsEnabled: true
+
+#browserFlow: "browser opa"
+#directGrantFlow: "direct grant opa"
+
+#authenticationFlows:
+#  - alias: "OPA: direct grant"
+#    description: "OpenID Connect Resource Owner Grant with OPA"
+#    providerId: "basic-flow"
+#    topLevel: true
+#    authenticationExecutions:
+#      - authenticator: "direct-grant-validate-username"
+#        requirement: "REQUIRED"
+#        priority: 10
+#      - authenticator: "direct-grant-validate-password"
+#        requirement: "REQUIRED"
+#        priority: 20
+#      - flowAlias: "OPA: Direct Grant - Conditional OTP"
+#        authenticatorFlow: true
+#        requirement: "CONDITIONAL"
+#        priority: 30
+#
+#  - alias: "OPA: Direct Grant - Conditional OTP"
+#    description: "Flow to determine if the OTP is required for the authentication with OPA"
+#    providerId: "basic-flow"
+#    topLevel: false
+#    authenticationExecutions:
+#      - authenticator: "conditional-user-configured"
+#        requirement: "REQUIRED"
+#        priority: 10
+#      - authenticator: "direct-grant-validate-otp"
+#        requirement: "REQUIRED"
+#        priority: 20
+
+
+clients:
+  - clientId: app1
+    protocol: openid-connect
+    name: App1
+    description: "App1 Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app1"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: app2
+    protocol: openid-connect
+    name: App2
+    description: "App2 Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app2"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: app3
+    protocol: openid-connect
+    name: App3
+    description: "App3 Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app3"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: foo-app4
+    protocol: openid-connect
+    name: foo-app4
+    description: "Foo-App4 Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=foo-app4"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: bar-app5
+    protocol: openid-connect
+    name: bar-app5
+    description: "Bar-App5 Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app3"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: app6-check-network
+    protocol: openid-connect
+    name: app6-check-network
+    description: "app6-check-network Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: false
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app6-check-network"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "post.logout.redirect.uris": "+"
+
+  - clientId: app7-password-grant
+    protocol: openid-connect
+    name: app7-password-grant
+    description: "Legacy App that can obtain tokens with Username + Password and ClientId+Secret via grant_type=password"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: false
+    directAccessGrantsEnabled: true
+    serviceAccountsEnabled: false
+    secret: "secret"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+
+
+  - clientId: app8-client-credentials
+    protocol: openid-connect
+    name: app8-client-credentials
+    description: "app8-client-credentials Description"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: false
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: true
+    secret: "secret"
+    defaultClientScopes:
+      - "email"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+
+roles:
+  # Realm specific roles
+  realm:
+    - name: "user"
+      description: "User Role"
+    - name: "admin"
+      description: "Admin Role"
+    - name: "guest"
+      description: "Guest Role"
+
+  client:
+    "app1":
+      - name: "access"
+        description: "App1: Access"
+        clientRole: true
+    "app2":
+      - name: "access"
+        description: "App2: Access"
+        clientRole: true
+    "app3":
+      - name: "access"
+        description: "App3: Access"
+        clientRole: true
+
+
+groups:
+  - name: "Users"
+    attributes:
+      groupAttribute1: ["groupAttributeValue1"]
+#    "realmRoles":
+#      - "user"
+#    "clientRoles": {}
+
+  - name: "Admins"
+#    "realmRoles":
+#      - "admin"
+
+  - name: "Guests"
+#    "realmRoles":
+#      - "guest"
+
+  - name: "FooBar"
+
+users:
+  - username: tester
+    email: test@local.test
+    emailVerified: true
+    firstName: Theo
+    lastName: Tester
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+
+# UC1: admin-console - check for realm role
+    realmRoles:
+      - "user"
+
+# UC2: app1 - check for current client role
+    clientRoles:
+      app1:
+        - "access"
+
+# UC3: app2 - check for explicit client role
+      app2:
+        - "access"
+
+# UC4: app3 - check for group membership
+    groups:
+      - "Users"
+
+# UC5: app4 / app5 - multi-client check for group membership
+      - "FooBar"
+
+  - username: admin
+    email: admin@local.test
+    emailVerified: true
+    firstName: Arno
+    lastName: Admin
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+    realmRoles:
+      - "admin"
+    groups:
+      - "Admins"
+
+  - username: guest
+    email: guest@local.test
+    emailVerified: true
+    firstName: Guido
+    lastName: Guest
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+    realmRoles:
+      - "guest"
+    groups:
+      - "Guests"

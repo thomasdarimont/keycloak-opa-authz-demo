@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T221242.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T222612.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T222651.401.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T223022.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T223451.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T223548.401.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T223644.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T223839.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225520.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225546.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225655.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225743.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225755.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225811.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225911.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T225938.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T230504.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T230507.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232007.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232011.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232732.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232818.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232846.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232937.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T232953.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T233844.500.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234217.500.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234325.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234401.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234431.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234441.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T234529.500.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T235636.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T235639.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T235710.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T235719.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-18T235729.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000813.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000815.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000825.403.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000841.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000945.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000949.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T000957.403.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001000.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001024.403.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001034.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001039.400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001050.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2024-02-19T001051.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Keycloak_Remote.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/client-requests.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/config/realms/playground.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/config/realms/users-saml.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/keycloak/providers/keycloak-restrict-client-auth.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa/inputs/input.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy_test.rego" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo2/access/policy.rego" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/utils/kc/helpers.rego" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessDecision.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessDecisionContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessPolicyProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessPolicyProviderFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessPolicySpi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProviderFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessAuthenticator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessClientPolicyEnforcer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessRequiredActionProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaPolicyQuery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaRequestContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaSubject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/AuthenticatorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/ClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/ComponentConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/CompositeConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/ConfigWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/MapConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/RealmConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config/ScopeConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/support/AuthenticatorUtils.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2cX5RBO9450pRm1m3qjTzv9KBPK" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.client-requests | #2.executor": "Run",
+    "HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client.executor": "Run",
+    "Remote JVM Debug.Keycloak Remote.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/home/tom/dev/repos/gh/thomasdarimont/keycloak-dev/keycloak-opa-authz/src/main/java/com/thomasdarimont/keycloak/accessmgmt",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt" />
+      <recent name="$PROJECT_DIR$/dev/config/realms" />
+      <recent name="$PROJECT_DIR$/dev/keycloak/providers" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config" />
+      <recent name="$PROJECT_DIR$/keycloak-opa/src/main/java/com/thomasdarimont/keycloak/opa/client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.thomasdarimont.keycloak.opa.checkaccess" />
+      <recent name="com.thomasdarimont.keycloak.accessmgmt" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Remote JVM Debug.Keycloak Remote">
+    <configuration name="client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" requestIdentifier="Resource Owner Password Credentials Grant Flow with Confidential Client" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="client-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory">
+      <option name="query" value="" />
+      <option name="additionalargs" value="" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="HTTP Request.client-requests | #2" />
+      <item itemvalue="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" />
+      <item itemvalue="Remote JVM Debug.Keycloak Remote" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.client-requests | #2" />
+        <item itemvalue="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-86fc8109" />
+        <option value="jdk-21.0.2-temurin-21.0.2-4caba194b151-51f4b930" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="" />
+      <created>1708245072024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708245072024</updated>
+      <workItem from="1708245073187" duration="4937000" />
+      <workItem from="1708278868140" duration="17322000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-defaults>
+        <breakpoint suspend="THREAD" type="java-line" />
+      </breakpoints-defaults>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.thomasdarimont.keycloak.opa.client.OpaSubject" memberName="clientRoles" />
+        <PinnedItemInfo parentTag="com.thomasdarimont.keycloak.opa.checkaccess.OpaCheckAccessClientPolicyEnforcer" memberName="session" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

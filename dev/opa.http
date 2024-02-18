@@ -1,0 +1,24 @@
+### Example login authorization request
+POST http://localhost:18181/v1/data/iam/keycloak/realms/playground/auth
+Content-Type: application/json
+
+{
+  "input": {
+    "subject": {
+      "username": "tester",
+      "groups": [
+        "Users"
+      ]
+    },
+    "resource": {
+      "realm": "playground",
+      "clientId": "account-console"
+    },
+    "action": "login"
+  }
+}
+
+
+### Get Policy data
+GET http://localhost:18181/v1/data/iam/keycloak/realms/playground/auth/data
+Accept: application/json
