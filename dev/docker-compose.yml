@@ -22,6 +22,7 @@ services:
       - "--health-enabled=true"
       - "--cache=local"
       - "--proxy=edge"
+      - "--features=preview"
       - "--spi-events-listener-jboss-logging-success-level=info"
       - "--spi-events-listener-jboss-logging-error-level=warn"
       - "--log-level=INFO,com.thomasdarimont.keycloak:DEBUG,org.keycloak.services.clientpolicy:DEBUG"

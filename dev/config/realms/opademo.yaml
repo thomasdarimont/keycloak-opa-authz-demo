@@ -15,7 +15,59 @@ eventsEnabled: true
 #browserFlow: "browser opa"
 #directGrantFlow: "direct grant opa"
 
-#authenticationFlows:
+authenticationFlows:
+  - alias: "opa-browser"
+    description: "OPA Browser Flow"
+    providerId: basic-flow
+    builtIn: false
+    topLevel: true
+    authenticationExecutions:
+      - flowAlias: "Login"
+        requirement: REQUIRED
+        authenticatorFlow: true
+      - authenticator: auth-opa-authz
+        requirement: REQUIRED
+        authenticatorConfig: "opa-browser-auth-default"
+
+  - alias: "Login"
+    description: "Sub-Flow to ask user for username an password"
+    providerId: basic-flow
+    topLevel: false
+    builtIn: false
+    authenticationExecutions:
+      - authenticator: auth-cookie
+        requirement: ALTERNATIVE
+      - authenticator: identity-provider-redirector
+        requirement: ALTERNATIVE
+      - flowAlias: "Identity Forms"
+        requirement: ALTERNATIVE
+        autheticatorFlow: true
+
+  - alias: "Identity Forms"
+    description: "Sub-Flow to ask user for username an password"
+    providerId: basic-flow
+    topLevel: false
+    builtIn: false
+    authenticationExecutions:
+      - authenticator: auth-username-password-form
+        requirement: REQUIRED
+      - flowAlias: "2FA Forms"
+        requirement: CONDITIONAL
+        authenticatorFlow: true
+
+  - alias: "2FA Forms"
+    description: "Sub-Flow to ask user for 2FA"
+    providerId: basic-flow
+    topLevel: false
+    builtIn: false
+    authenticationExecutions:
+      - authenticator: conditional-user-configured
+        requirement: REQUIRED
+      - authenticator: auth-otp-form
+        requirement: ALTERNATIVE
+      - authenticator: auth-recovery-authn-code-form
+        requirement: ALTERNATIVE
+
 #  - alias: "OPA: direct grant"
 #    description: "OpenID Connect Resource Owner Grant with OPA"
 #    providerId: "basic-flow"
@@ -44,12 +96,19 @@ eventsEnabled: true
 #        requirement: "REQUIRED"
 #        priority: 20
 
+authenticatorConfig:
+  - alias: "opa-browser-auth-default"
+    config:
+      opa-url: "http://keycloak-opa:8181/v1/data/iam/keycloak/allow"
+      opa-policy-path: "/keycloak/realms/{realm}/{action}/allow"
+      opa-context-attributes: "remoteAddress,protocol,grantType"
+      opa-user-attributes: "email,emailVerified"
 
 clients:
   - clientId: app1
     protocol: openid-connect
     name: App1
-    description: "App1 Description"
+    description: "App1: Access with client role 'access'"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -77,7 +136,7 @@ clients:
   - clientId: app2
     protocol: openid-connect
     name: App2
-    description: "App2 Description"
+    description: "App2: Access with indirect client role 'access'"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -105,7 +164,7 @@ clients:
   - clientId: app3
     protocol: openid-connect
     name: App3
-    description: "App3 Description"
+    description: "App3: Access for 'Users' Group members"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -130,10 +189,10 @@ clients:
     attributes:
       "post.logout.redirect.uris": "+"
 
-  - clientId: foo-app4
+  - clientId: app4-foo
     protocol: openid-connect
-    name: foo-app4
-    description: "Foo-App4 Description"
+    name: app4-foo
+    description: "app4-foo Access for FooBar Group Members"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -144,7 +203,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=foo-app4"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app4-foo"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -158,10 +217,10 @@ clients:
     attributes:
       "post.logout.redirect.uris": "+"
 
-  - clientId: bar-app5
+  - clientId: app5-bar
     protocol: openid-connect
-    name: bar-app5
-    description: "Bar-App5 Description"
+    name: app5-bar
+    description: "app5-bar Access for FooBar Group Members"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -172,7 +231,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app3"
+    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app5-bar"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -189,7 +248,7 @@ clients:
   - clientId: app6-check-network
     protocol: openid-connect
     name: app6-check-network
-    description: "app6-check-network Description"
+    description: "app6-check-network Access from specific network"
     enabled: true
     publicClient: true
     standardFlowEnabled: true
@@ -234,7 +293,7 @@ clients:
   - clientId: app8-client-credentials
     protocol: openid-connect
     name: app8-client-credentials
-    description: "app8-client-credentials Description"
+    description: "Service that can obtain tokens with ClientId+Secret via grant_type=client_credentials"
     enabled: true
     publicClient: false
     standardFlowEnabled: false
@@ -304,24 +363,24 @@ users:
         temporary: false
 
 # UC1: admin-console - check for realm role
-    realmRoles:
-      - "user"
+#    realmRoles:
+#      - "user"
 
 # UC2: app1 - check for current client role
-    clientRoles:
-      app1:
-        - "access"
+#    clientRoles:
+#      app1:
+#        - "access"
 
 # UC3: app2 - check for explicit client role
-      app2:
-        - "access"
+#      app2:
+#        - "access"
 
 # UC4: app3 - check for group membership
-    groups:
-      - "Users"
+#    groups:
+#      - "Users"
 
 # UC5: app4 / app5 - multi-client check for group membership
-      - "FooBar"
+#      - "FooBar"
 
   - username: admin
     email: admin@local.test
