@@ -133,7 +133,7 @@ public class OpaAccessPolicyProvider implements AccessPolicyProvider {
                 .subject(subject) //
                 .resource(resource) //
                 .context(requestContext) //
-                .action(action) //
+//                .action(action) //
                 .build();
     }
 

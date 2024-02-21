@@ -1,7 +1,6 @@
 package keycloak.utils.kc
 
-import future.keywords.if
-import future.keywords.in
+import rego.v1
 
 isRealm(realmName) if input.resource.realm == realmName
 
@@ -16,14 +15,14 @@ hasClientRole(clientId, roleName) := result if {
 }
 
 hasCurrentClientRole(roleName) := result if {
-    # clientId:client-role
+	# clientId:client-role
 	client_role := concat(":", [input.resource.clientId, roleName])
 	result := client_role in input.subject.clientRoles
 }
 
-hasUserAttribute(attribute) if input.subject.attributes[attribute]
+hasUserAttribute(attributes, attribute) if attributes[attribute]
 
-hasUserAttributeValue(attribute, value) if input.subject.attributes[attribute] == value
+hasUserAttributeValue(attributes, attribute, value) if attributes[attribute] == value
 
 isGroupMember(group) if group in input.subject.groups
 

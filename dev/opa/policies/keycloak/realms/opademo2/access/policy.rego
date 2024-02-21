@@ -1,7 +1,6 @@
 package keycloak.realms.opademo2.access
 
-import future.keywords.if
-import future.keywords.in
+import rego.v1
 
 import data.keycloak.utils.kc
 
