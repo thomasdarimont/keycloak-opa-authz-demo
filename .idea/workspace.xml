@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Next iteration">
-      <change afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access_test/policy_test.rego" afterDir="false" />
+    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Use idiomatic REGO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy_test.rego" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo2/access/policy.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo2/access/policy.rego" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/utils/kc/helpers.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/utils/kc/helpers.rego" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaPolicyQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaPolicyQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,35 +35,35 @@
     <option name="autoscrollToSource" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.client-requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client.executor&quot;: &quot;Run&quot;,
-    &quot;Remote JVM Debug.Keycloak Remote.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tom/dev/repos/gh/thomasdarimont/keycloak-dev/keycloak-opa-authz/src/main/java/com/thomasdarimont/keycloak/accessmgmt&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.client-requests | #2.executor": "Run",
+    "HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client.executor": "Run",
+    "Remote JVM Debug.Keycloak Remote.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/home/tom/dev/repos/gh/thomasdarimont/keycloak-dev/keycloak-opa-authz",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.customizations",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt" />
       <recent name="$PROJECT_DIR$/dev/config/realms" />
       <recent name="$PROJECT_DIR$/dev/keycloak/providers" />
       <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config" />
-      <recent name="$PROJECT_DIR$/keycloak-opa/src/main/java/com/thomasdarimont/keycloak/opa/client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access_test" />
@@ -131,7 +126,9 @@
       <workItem from="1708278868140" duration="17558000" />
       <workItem from="1708354259814" duration="15487000" />
       <workItem from="1708512539751" duration="31000" />
-      <workItem from="1708512580658" duration="922000" />
+      <workItem from="1708512580658" duration="1841000" />
+      <workItem from="1708552292708" duration="5240000" />
+      <workItem from="1708894775054" duration="88000" />
     </task>
     <task id="LOCAL-00001" summary="Next iteration">
       <option name="closed" value="true" />
@@ -141,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708465382229</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Use idiomatic REGO">
+      <option name="closed" value="true" />
+      <created>1708513536671</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708513536671</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +154,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Next iteration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Next iteration" />
+    <MESSAGE value="Use idiomatic REGO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Use idiomatic REGO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

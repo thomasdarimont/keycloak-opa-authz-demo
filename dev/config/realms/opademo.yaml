@@ -363,13 +363,13 @@ users:
         temporary: false
 
 # UC1: admin-console - check for realm role
-#    realmRoles:
-#      - "user"
+    realmRoles:
+      - "user"
 
 # UC2: app1 - check for current client role
-#    clientRoles:
-#      app1:
-#        - "access"
+    clientRoles:
+      app1:
+        - "access"
 
 # UC3: app2 - check for explicit client role
 #      app2:
