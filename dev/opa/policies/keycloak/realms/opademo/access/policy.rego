@@ -49,13 +49,14 @@ allow if {
 	kc.isClient("app6-check-network")
 
 	# "172.18.0.1/16"
-	kc.isFromNetwork("172.17.0.1/16")
+	# 172.20.0.1/16
+	kc.isFromNetwork("172.99.0.1/16")
 }
 
 # Access Policy: "app7-password-grant"
 # Allow usage of password grant only for this client
 allow if {
-	kc.isClient("app7-password-grant")
+	kc.isClient("app7-password-grantXX")
 	kc.isProtocol("openid-connect")
 	kc.isGrantType("password")
 }

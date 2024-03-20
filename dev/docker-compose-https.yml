@@ -8,8 +8,13 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
       DEBUG: "true"
       DEBUG_PORT: "*:8787"
+      KC_HTTPS_CERTIFICATE_FILE: /etc/x509/https/tls.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /etc/x509/https/tls.key
+      KC_HOSTNAME: id.kubecon.test
+      KC_HOSTNAME_PORT: 8443
     ports:
       - "8080:8080"
+      - "8443:8443"
       - "127.0.0.1:8787:8787"
 
     command:
@@ -33,6 +38,9 @@ services:
       - ../target/keycloak-opa.jar:/opt/keycloak/providers/keycloak-opa.jar:z
       - ./keycloak/providers/keycloak-restrict-client-auth.jar:/opt/keycloak/providers/keycloak-restrict-client-auth.jar:z
 #      - ./keycloak/quarkus.properties:/opt/keycloak/conf/quarkus.properties:z
+      # This configures the key and certificate for HTTPS.
+      - ./config/certs/kubecon.pem:/etc/x509/https/tls.crt:z
+      - ./config/certs/kubecon-key.pem:/etc/x509/https/tls.key:z
 
   keycloak-opa:
     image: openpolicyagent/opa:0.62.1
@@ -65,7 +73,7 @@ services:
       IMPORT_CACHE_ENABLED: "true" # IMPORT_FORCE: "false"
       IMPORT_VAR_SUBSTITUTION_ENABLED: "true" # IMPORT_VARSUBSTITUTION: "true"
       IMPORT_VALIDATE: "true"
-      KEYCLOAK_FRONTEND_URL: "http://localhost:8080/auth"
+      KEYCLOAK_FRONTEND_URL: "https://id.kubecon.test:8443/auth"
     # See https://github.com/adorsys/keycloak-config-cli#log-level
     #      LOGGING_LEVEL_KEYCLOAKCONFIGCLI: "debug"
     volumes:

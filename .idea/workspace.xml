@@ -8,6 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/docker-compose-https.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/home/tom/dev/repos/gh/thomasdarimont/keycloak-dev/keycloak-opa-authz",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/tom/dev/repos/gh/thomasdarimont/keycloak-dev/keycloak-opa-authz/dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,17 +57,17 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.customizations",
+    "settings.editor.selected.configurable": "preferences.externalTools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dev" />
+      <recent name="$PROJECT_DIR$/dev/config/realms" />
+      <recent name="$PROJECT_DIR$/dev/config/certs" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt" />
-      <recent name="$PROJECT_DIR$/dev/config/realms" />
-      <recent name="$PROJECT_DIR$/dev/keycloak/providers" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access_test" />
@@ -74,7 +78,7 @@
       <recent name="com.thomasdarimont.keycloak.accessmgmt" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.client-requests | #2">
+  <component name="RunManager" selected="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client">
     <configuration name="client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" requestIdentifier="Resource Owner Password Credentials Grant Flow with Confidential Client" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -100,8 +104,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.client-requests | #2" />
         <item itemvalue="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" />
+        <item itemvalue="HTTP Request.client-requests | #2" />
         <item itemvalue="Opa eval.eval data.keycloak.realms.opademo.access.if" />
       </list>
     </recent_temporary>
@@ -128,7 +132,16 @@
       <workItem from="1708512539751" duration="31000" />
       <workItem from="1708512580658" duration="1841000" />
       <workItem from="1708552292708" duration="5240000" />
-      <workItem from="1708894775054" duration="88000" />
+      <workItem from="1708894775054" duration="690000" />
+      <workItem from="1709031981640" duration="4133000" />
+      <workItem from="1709631225108" duration="613000" />
+      <workItem from="1709633123397" duration="2201000" />
+      <workItem from="1710692135149" duration="3102000" />
+      <workItem from="1710840040487" duration="119000" />
+      <workItem from="1710846515799" duration="2132000" />
+      <workItem from="1710878328971" duration="3278000" />
+      <workItem from="1710946530516" duration="1494000" />
+      <workItem from="1710949072846" duration="1779000" />
     </task>
     <task id="LOCAL-00001" summary="Next iteration">
       <option name="closed" value="true" />

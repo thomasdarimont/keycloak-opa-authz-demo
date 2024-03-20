@@ -119,7 +119,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app1"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app1"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -147,7 +147,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app2"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app2"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -175,7 +175,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app3"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app3"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -203,7 +203,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app4-foo"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app4-foo"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -231,7 +231,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app5-bar"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app5-bar"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -259,7 +259,7 @@ clients:
     #    attributes: { }
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=http://localhost:8080/auth&realm=opademo&client=app6-check-network"
+    baseUrl: "/#url=$(env:KEYCLOAK_FRONTEND_URL:-https://id.kubecon.test:8443/auth)&realm=opademo&client=app6-check-network"
     adminUrl: ""
     redirectUris:
       - "/*"
@@ -335,9 +335,9 @@ groups:
   - name: "Users"
     attributes:
       groupAttribute1: ["groupAttributeValue1"]
-#    "realmRoles":
-#      - "user"
-#    "clientRoles": {}
+    "realmRoles":
+      - "user"
+    "clientRoles": {}
 
   - name: "Admins"
 #    "realmRoles":
@@ -363,13 +363,13 @@ users:
         temporary: false
 
 # UC1: admin-console - check for realm role
-    realmRoles:
-      - "user"
+#    realmRoles:
+#      - "user"
 
 # UC2: app1 - check for current client role
-    clientRoles:
-      app1:
-        - "access"
+#    clientRoles:
+#      app1:
+#        - "access"
 
 # UC3: app2 - check for explicit client role
 #      app2:
