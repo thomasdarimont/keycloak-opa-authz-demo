@@ -5,6 +5,12 @@ Example code for integrating Open Policy Agent with Keycloak presented at Keyclo
 
 [Slides](keycloak-devday-2024-flexible-authz-for-keycloak-with-openpolicyagent.pdf)
 
+# Build
+
+```
+mvn clean package -DskipTests
+```
+
 # Run
 
 ## Run with HTTP
