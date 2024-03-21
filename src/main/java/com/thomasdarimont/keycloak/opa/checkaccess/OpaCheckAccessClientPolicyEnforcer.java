@@ -5,6 +5,7 @@ import com.thomasdarimont.keycloak.accessmgmt.AccessDecision;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecisionContext;
 import com.thomasdarimont.keycloak.accessmgmt.AccessPolicyProvider;
 import com.thomasdarimont.keycloak.opa.config.MapConfig;
+import jakarta.ws.rs.core.Response;
 import lombok.extern.jbosslog.JBossLog;
 import org.keycloak.Config;
 import org.keycloak.events.Errors;
@@ -74,7 +75,7 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
         AccessDecision accessDecision = accessPolicyProvider.evaluate(decisionContext);
 
         if (!accessDecision.isAllowed()) {
-            throw new ClientPolicyException(Errors.ACCESS_DENIED, "OPA Access Check failed.");
+            throw new ClientPolicyException(Errors.ACCESS_DENIED, "OPA Access Check failed.", Response.Status.FORBIDDEN);
         }
     }
 
