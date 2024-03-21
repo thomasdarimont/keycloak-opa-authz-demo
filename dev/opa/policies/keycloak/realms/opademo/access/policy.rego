@@ -56,7 +56,7 @@ allow if {
 # Access Policy: "app7-password-grant"
 # Allow usage of password grant only for this client
 allow if {
-	kc.isClient("app7-password-grantXX")
+	kc.isClient("app7-password-grantXXX")
 	kc.isProtocol("openid-connect")
 	kc.isGrantType("password")
 }
@@ -64,7 +64,7 @@ allow if {
 # Access Policy: "app8-client-credentials"
 # Allow usage of client_credentials grant only for this client
 allow if {
-	kc.isClient("app8-client-credentials")
+	kc.isClient("app8-client-credentialsXXX")
 	kc.isProtocol("openid-connect")
 	kc.isGrantType("client_credentials")
 }
