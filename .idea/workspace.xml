@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Update example&#10;&#10;- Update to Keycloak 24&#10;- Add run instructions">
+    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Disallow access with password / client_credentials grant by default">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/docker-compose-https.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/docker-compose-https.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +77,17 @@
       <recent name="com.thomasdarimont.keycloak.accessmgmt" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client">
+  <component name="RunManager" selected="HTTP Request.client-requests | #2">
     <configuration name="client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" requestIdentifier="Resource Owner Password Credentials Grant Flow with Confidential Client" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="client-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory">
+      <option name="query" value="" />
+      <option name="additionalargs" value="" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="eval data.keycloak.realms.opademo.access.if" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory" temporary="true">
@@ -95,8 +104,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" />
         <item itemvalue="HTTP Request.client-requests | #2" />
+        <item itemvalue="HTTP Request.client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" />
         <item itemvalue="Opa eval.eval data.keycloak.realms.opademo.access.if" />
       </list>
     </recent_temporary>
@@ -133,7 +142,13 @@
       <workItem from="1710878328971" duration="3278000" />
       <workItem from="1710946530516" duration="1494000" />
       <workItem from="1710949072846" duration="2412000" />
-      <workItem from="1710952730352" duration="25000" />
+      <workItem from="1710952730352" duration="964000" />
+      <workItem from="1711019363942" duration="5001000" />
+      <workItem from="1711087251562" duration="1537000" />
+      <workItem from="1711100433559" duration="133000" />
+      <workItem from="1711103879898" duration="2581000" />
+      <workItem from="1712055683847" duration="3207000" />
+      <workItem from="1712063238187" duration="709000" />
     </task>
     <task id="LOCAL-00001" summary="Next iteration">
       <option name="closed" value="true" />
@@ -159,7 +174,31 @@
       <option name="project" value="LOCAL" />
       <updated>1710950875324</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ad build instructions">
+      <option name="closed" value="true" />
+      <created>1710952798803</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710952798803</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Use 403 status code in client policy for access denied">
+      <option name="closed" value="true" />
+      <created>1711021528244</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711021528244</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Disallow access with password / client_credentials grant by default">
+      <option name="closed" value="true" />
+      <created>1711021563397</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711021563397</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +208,10 @@
     <MESSAGE value="Next iteration" />
     <MESSAGE value="Use idiomatic REGO" />
     <MESSAGE value="Update example&#10;&#10;- Update to Keycloak 24&#10;- Add run instructions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update example&#10;&#10;- Update to Keycloak 24&#10;- Add run instructions" />
+    <MESSAGE value="Ad build instructions" />
+    <MESSAGE value="Use 403 status code in client policy for access denied" />
+    <MESSAGE value="Disallow access with password / client_credentials grant by default" />
+    <option name="LAST_COMMIT_MESSAGE" value="Disallow access with password / client_credentials grant by default" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

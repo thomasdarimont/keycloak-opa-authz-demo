@@ -1,7 +1,7 @@
 services:
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.1
+    image: quay.io/keycloak/keycloak:24.0.2
     environment:
       KC_HTTP_RELATIVE_PATH: "/auth"
       KEYCLOAK_ADMIN: admin
