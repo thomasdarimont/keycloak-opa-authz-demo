@@ -8,6 +8,22 @@ import data.keycloak.utils.kc
 # Default allow rule: deny all
 default allow := false
 
+# Access Policy: Onboard
+#allow if {
+#	kc.resourceNameMatches("Data_Product_Onboarding")
+#	kc.isRealm("opademo")
+#	kc.isClient("Apisix")
+#  	kc.hasRealmRole("admin")
+#}
+# Access Policy: Authentication
+allow if{
+	kc.isClient("Apisix")
+	kc.isProtocol("openid-connect")
+	kc.isRealm("opademo")
+	kc.isGrantType("password")
+	kc.hasRealmRole("admin")
+}
+
 # Access Policy: Account-Console
 # Allow access to client-id:account-console if realm-role:user
 allow if {

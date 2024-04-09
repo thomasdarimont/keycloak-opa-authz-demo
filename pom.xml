@@ -24,12 +24,12 @@
 
     <dependencies>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>de.sventorben.keycloak</groupId>
             <artifactId>keycloak-restrict-client-auth</artifactId>
             <version>23.0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.keycloak</groupId>
