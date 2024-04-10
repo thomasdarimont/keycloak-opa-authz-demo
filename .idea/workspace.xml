@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Disallow access with password / client_credentials grant by default">
+    <list default="true" id="79f6f84e-a244-418f-a68f-f04e4ef8f4da" name="Changes" comment="Update Keycloak version to 24.0.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/docker-compose-https.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/docker-compose-https.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" beforeDir="false" afterPath="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access/policy.rego" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dev/config/realms/opademo.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessDecisionContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt/AccessDecisionContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaAccessPolicyProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessClientPolicyEnforcer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessClientPolicyEnforcer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessRequiredActionProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/checkaccess/OpaCheckAccessRequiredActionProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaPolicyQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaPolicyQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/client/OpaResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Rego File" />
       </list>
     </option>
   </component>
@@ -69,6 +74,8 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/accessmgmt" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo" />
+      <recent name="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opaauthz" />
       <recent name="$PROJECT_DIR$/dev/opa/policies/keycloak/realms/opademo/access_test" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
@@ -77,22 +84,21 @@
       <recent name="com.thomasdarimont.keycloak.accessmgmt" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.client-requests | #2">
+  <component name="RunManager" selected="Remote JVM Debug.Keycloak Remote">
     <configuration name="client-requests | Resource Owner Password Credentials Grant Flow with Confidential Client" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" requestIdentifier="Resource Owner Password Credentials Grant Flow with Confidential Client" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="client-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dev/client-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration default="true" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory">
-      <option name="query" value="" />
-      <option name="additionalargs" value="" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="eval data.keycloak.realms.opademo.access.if" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory" temporary="true">
       <option name="query" value="data.keycloak.realms.opademo.access.if" />
       <option name="additionalargs" value="-f pretty " />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="OPA_TEST_RUN_CONFIGURATION" factoryName="Opa configuration factory">
+      <option name="additionalargs" value="" />
       <envs />
       <method v="2" />
     </configuration>
@@ -113,8 +119,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-86fc8109" />
-        <option value="jdk-21.0.2-temurin-21.0.2-4caba194b151-51f4b930" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -148,7 +154,8 @@
       <workItem from="1711100433559" duration="133000" />
       <workItem from="1711103879898" duration="2581000" />
       <workItem from="1712055683847" duration="3207000" />
-      <workItem from="1712063238187" duration="709000" />
+      <workItem from="1712063238187" duration="1965000" />
+      <workItem from="1712733143623" duration="14710000" />
     </task>
     <task id="LOCAL-00001" summary="Next iteration">
       <option name="closed" value="true" />
@@ -198,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711021563397</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update Keycloak version to 24.0.2">
+      <option name="closed" value="true" />
+      <created>1712094644514</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712094644514</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,10 +226,33 @@
     <MESSAGE value="Ad build instructions" />
     <MESSAGE value="Use 403 status code in client policy for access denied" />
     <MESSAGE value="Disallow access with password / client_credentials grant by default" />
-    <option name="LAST_COMMIT_MESSAGE" value="Disallow access with password / client_credentials grant by default" />
+    <MESSAGE value="Update Keycloak version to 24.0.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Keycloak version to 24.0.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/authzservices/OpaPolicyProvider.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/thomasdarimont/keycloak/opa/authzservices/OpaPolicyProvider.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/keycloak/keycloak-services/24.0.2/keycloak-services-24.0.2-sources.jar!/org/keycloak/services/resources/admin/UserResource.java</url>
+          <line>1018</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/keycloak/keycloak-services/24.0.2/keycloak-services-24.0.2-sources.jar!/org/keycloak/services/resources/admin/UsersResource.java</url>
+          <line>271</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-defaults>
         <breakpoint suspend="THREAD" type="java-line" />
       </breakpoints-defaults>
@@ -222,6 +260,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.thomasdarimont.keycloak.opa.client.OpaSubject" memberName="clientRoles" />
+        <PinnedItemInfo parentTag="org.keycloak.models.cache.infinispan.authorization.entities.CachedPolicy" memberName="associatedPoliciesIds" />
         <PinnedItemInfo parentTag="com.thomasdarimont.keycloak.opa.checkaccess.OpaCheckAccessClientPolicyEnforcer" memberName="session" />
       </pinned-members>
     </pin-to-top-manager>

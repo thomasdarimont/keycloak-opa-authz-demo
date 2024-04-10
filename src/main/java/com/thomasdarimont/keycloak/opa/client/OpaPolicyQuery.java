@@ -13,5 +13,5 @@ public class OpaPolicyQuery {
 
     private OpaRequestContext context;
 
-//    private String action;
+    private String action;
 }
