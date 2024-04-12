@@ -3,6 +3,7 @@ package com.thomasdarimont.keycloak.opa.checkaccess;
 import org.jboss.logging.Logger;
 import org.keycloak.events.Event;
 import org.keycloak.events.EventListenerProvider;
+import com.thomasdarimont.keycloak.accessmgmt.RealmResource;
 import org.keycloak.events.EventType;
 import org.keycloak.events.admin.AdminEvent;
 import org.keycloak.events.admin.OperationType;
@@ -49,7 +50,7 @@ public class CustomEventListenerProvider
     
     @Override
     public void onEvent(Event event) {
-
+        var sessionContext = session.getContext();
         try {
             log.debugf("New %s Event", event.getType());
             log.debugf("onEvent-> %s", toString(event));
@@ -60,7 +61,7 @@ public class CustomEventListenerProvider
                 RealmModel realm = this.model.getRealm(event.getRealmId());
                 UserModel user = this.session.users().getUserById(realm, event.getUserId());
                 sendUserData(user);
-                checkAccess(createAccessDecisionResource());
+                checkAccess(createAccessDecisionContext(session.users().getServiceAccount(sessionContext.getClient())));
             }
         } catch (ClientPolicyException e) {
             log.error("Error en el evento: " + e.getMessage(), e);
@@ -77,14 +78,19 @@ public class CustomEventListenerProvider
         }
     }
 
-    private AccessDecisionContext createAccessDecisionResource() {
+    private AccessDecisionContext createAccessDecisionContext(UserModel user) {
         var context = session.getContext();
         var realm = context.getRealm();
         var client = context.getClient();
-        var authSession = context.getAuthenticationSession();
-        var user = authSession.getAuthenticatedUser();
         var configWrapper = new MapConfig((Map<String, String>) (Object) config.getConfigAsMap());
-        return new AccessDecisionContext(session, realm, client, user, configWrapper);
+        var resource = RealmResource.builder() //
+                .id(client.getId()) //
+                .name(client.getClientId()) //
+                .type("client") //
+                .path(realm.getName() + "/clients/" + client.getId()) //
+                .build();
+
+        return new AccessDecisionContext(session, realm, client, user, resource, AccessDecisionContext.ACTION_CHECK_ACCESS, configWrapper);
     }
 
     @Override
