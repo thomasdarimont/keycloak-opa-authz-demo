@@ -54,6 +54,7 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
     public void executeOnEvent(ClientPolicyContext context) throws ClientPolicyException {
 
         ClientPolicyEvent event = context.getEvent();
+
         switch (event) {
             case RESOURCE_OWNER_PASSWORD_CREDENTIALS_RESPONSE: {
                 log.debugf("OPA: Check Access for grant_type: password");
@@ -66,6 +67,12 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
                 checkAccess(createAccessDecisionContextForClientCredentialsGrant());
             }
             break;
+
+            default: {
+                log.debugf("OPA: Handling unknown event: %s", event);
+                break;
+            }
+
         }
     }
 
@@ -97,6 +104,7 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
         var configWrapper = new MapConfig((Map<String, String>) (Object) config.getConfigAsMap());
         return new AccessDecisionContext(session, realm, client, serviceAccountUser, configWrapper);
     }
+
 
     @AutoService(ClientPolicyExecutorProviderFactory.class)
     public static class Factory implements ClientPolicyExecutorProviderFactory {
