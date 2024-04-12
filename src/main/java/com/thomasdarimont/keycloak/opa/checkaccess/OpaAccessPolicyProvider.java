@@ -3,6 +3,7 @@ package com.thomasdarimont.keycloak.opa.checkaccess;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecision;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecisionContext;
 import com.thomasdarimont.keycloak.accessmgmt.AccessPolicyProvider;
+import com.thomasdarimont.keycloak.accessmgmt.RealmResource;
 import com.thomasdarimont.keycloak.opa.client.OpaClient;
 import com.thomasdarimont.keycloak.opa.client.OpaPolicyQuery;
 import com.thomasdarimont.keycloak.opa.client.OpaRequest;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.core.UriBuilder;
 import lombok.Getter;
 import org.keycloak.models.ClientModel;
 import org.keycloak.models.GroupModel;
+import org.keycloak.models.KeycloakContext;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
 import org.keycloak.models.RoleModel;
@@ -99,11 +101,11 @@ public class OpaAccessPolicyProvider implements AccessPolicyProvider {
 
     public AccessDecision evaluate(AccessDecisionContext context) {
 
-        String action = ACTION_CHECK_ACCESS;
+        String action = context.getAction();
 
         ConfigWrapper config = getConfig(context);
         OpaSubject subject = createSubject(context.getUser(), context.getClient(), config);
-        OpaResource resource = createResource(context.getRealm(), context.getClient(), config);
+        OpaResource resource = createResource(context.getRealm(), context.getClient(), config, context.getResource());
         OpaRequestContext requestContext = createRequestContext(context.getSession(), config);
 
         String policyUrl = createPolicyUrl(context.getRealm(), context.getClient(), action, config);
@@ -133,7 +135,7 @@ public class OpaAccessPolicyProvider implements AccessPolicyProvider {
                 .subject(subject) //
                 .resource(resource) //
                 .context(requestContext) //
-//                .action(action) //
+                .action(action) //
                 .build();
     }
 
@@ -157,17 +159,22 @@ public class OpaAccessPolicyProvider implements AccessPolicyProvider {
         return subjectBuilder.build();
     }
 
-    protected OpaResource createResource(RealmModel realm, ClientModel client, ConfigWrapper config) {
-        var resourceBuilder = OpaResource.builder();
-        resourceBuilder.realm(realm.getName());
-        resourceBuilder.clientId(client.getClientId());
+    protected OpaResource createResource(RealmModel realm, ClientModel client, ConfigWrapper config, RealmResource resource) {
+        var opaResourceBuilder = OpaResource.builder();
+        opaResourceBuilder.realm(realm.getName());
+        opaResourceBuilder.clientId(client.getClientId());
         if (config.isConfigured(Option.REALM_ATTRIBUTES.key, false)) {
-            resourceBuilder.realmAttributes(extractRealmAttributes(realm, config));
+            opaResourceBuilder.realmAttributes(extractRealmAttributes(realm, config));
         }
         if (config.isConfigured(Option.CLIENT_ATTRIBUTES.key, false)) {
-            resourceBuilder.clientAttributes(extractClientAttributes(client, config));
+            opaResourceBuilder.clientAttributes(extractClientAttributes(client, config));
         }
-        return resourceBuilder.build();
+        opaResourceBuilder.resourceType(resource.getType());
+        opaResourceBuilder.resourceId(resource.getId());
+        opaResourceBuilder.resourceName(resource.getName());
+        opaResourceBuilder.resourcePath(resource.getPath());
+        opaResourceBuilder.resourceScopes(resource.getScopes());
+        return opaResourceBuilder.build();
     }
 
     protected OpaClient createOpaClient(AccessDecisionContext context) {
@@ -231,15 +238,16 @@ public class OpaAccessPolicyProvider implements AccessPolicyProvider {
     protected Map<String, Object> extractContextAttributes(KeycloakSession session, ConfigWrapper config) {
         return extractAttributes(null, config, Option.CONTEXT_ATTRIBUTES.key, (source, attr) -> {
             Object value;
+            KeycloakContext context = session.getContext();
             switch (attr) {
                 case "remoteAddress":
-                    value = session.getContext().getConnection().getRemoteAddr();
+                    value = context.getConnection() != null ? context.getConnection().getRemoteAddr() : null;
                     break;
                 case "protocol":
-                    value = session.getContext().getAuthenticationSession().getProtocol();
+                    value = context.getAuthenticationSession() != null ? context.getAuthenticationSession().getProtocol() : null;
                     break;
                 case "grantType":
-                    value = session.getContext().getHttpRequest().getDecodedFormParameters().getFirst("grant_type");
+                    value = context.getHttpRequest() != null ? context.getHttpRequest().getDecodedFormParameters().getFirst("grant_type") : null;
                     break;
                 default:
                     value = null;

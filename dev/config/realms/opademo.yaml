@@ -313,12 +313,30 @@ clients:
 roles:
   # Realm specific roles
   realm:
-    - name: "user"
-      description: "User Role"
     - name: "admin"
       description: "Admin Role"
+      composite: true
+      composites:
+        client:
+          "realm-management":
+            - view-realm
+            - view-users
+            - query-users
+            - query-groups
+    - name: "user"
+      description: "User Role"
     - name: "guest"
       description: "Guest Role"
+
+    - name: "customer-admin"
+      description: "Customer Admin Role"
+      composite: true
+      composites:
+        client:
+          "realm-management":
+            - view-users
+            - query-users
+            - query-groups
 
   client:
     "app1":
@@ -352,6 +370,11 @@ groups:
 #      - "guest"
 
   - name: "FooBar"
+
+  - name: "customers"
+    subGroups:
+      - name: "customers1"
+      - name: "customers2"
 
 users:
   - username: tester
@@ -399,6 +422,7 @@ users:
         temporary: false
     realmRoles:
       - "admin"
+
     groups:
       - "Admins"
 
@@ -417,3 +441,67 @@ users:
       - "guest"
     groups:
       - "Guests"
+
+  - username: c1-admin
+    email: c1-admin@local.test
+    emailVerified: true
+    firstName: Admin
+    lastName: Customer 1
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+    realmRoles:
+      - "customer-admin"
+
+  - username: c1-user1
+    email: c1-user1@local.test
+    emailVerified: true
+    firstName: User1
+    lastName: Customer 1
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+
+  - username: c1-user2
+    email: c1-user2@local.test
+    emailVerified: true
+    firstName: User2
+    lastName: Customer 1
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+
+  - username: c2-admin
+    email: c2-admin@local.test
+    emailVerified: true
+    firstName: Admin
+    lastName: Customer 2
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
+    realmRoles:
+      - "customer-admin"
+
+  - username: c2-user1
+    email: c2-user1@local.test
+    emailVerified: true
+    firstName: User1
+    lastName: Customer 2
+    enabled: true
+    credentials:
+      - type: password
+        userLabel: initial
+        value: test
+        temporary: false
