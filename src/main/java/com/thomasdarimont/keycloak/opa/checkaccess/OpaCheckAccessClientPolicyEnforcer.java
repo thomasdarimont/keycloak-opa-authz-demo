@@ -56,6 +56,7 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
     public void executeOnEvent(ClientPolicyContext context) throws ClientPolicyException {
 
         ClientPolicyEvent event = context.getEvent();
+        var sessionContext = session.getContext();
         switch (event) {
             case RESOURCE_OWNER_PASSWORD_CREDENTIALS_RESPONSE: {
                 log.debugf("OPA: Check Access for grant_type: password");
@@ -95,7 +96,6 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
 
         return new AccessDecisionContext(session, realm, client, user, resource, AccessDecisionContext.ACTION_CHECK_ACCESS, configWrapper);
     }
-
 
     @AutoService(ClientPolicyExecutorProviderFactory.class)
     public static class Factory implements ClientPolicyExecutorProviderFactory {
