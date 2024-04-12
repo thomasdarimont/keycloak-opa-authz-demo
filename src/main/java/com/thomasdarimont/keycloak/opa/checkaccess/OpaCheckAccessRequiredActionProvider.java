@@ -4,6 +4,7 @@ import com.google.auto.service.AutoService;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecision;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecisionContext;
 import com.thomasdarimont.keycloak.accessmgmt.AccessPolicyProvider;
+import com.thomasdarimont.keycloak.accessmgmt.RealmResource;
 import com.thomasdarimont.keycloak.support.AuthenticatorUtils;
 import jakarta.ws.rs.core.Response;
 import org.keycloak.Config;
@@ -51,8 +52,15 @@ public class OpaCheckAccessRequiredActionProvider implements RequiredActionProvi
         // TODO take configuration from "opa-check-access-profile" -> "opa-client-access-policy-enforcer"
         //  session.clientPolicy().getClientProfiles(realm, false).getProfiles().get(0).getExecutors().get(0).getConfiguration()
 
+        RealmResource resource = RealmResource.builder() //
+                .id(client.getId()) //
+                .name(client.getClientId()) //
+                .type("client") //
+                .path(realm.getName() + "/clients/" + client.getId()) //
+                .build();
+
         AccessPolicyProvider accessPolicyProvider = session.getProvider(AccessPolicyProvider.class, OpaAccessPolicyProvider.ID);
-        AccessDecisionContext decisionContext = new AccessDecisionContext(session, realm, client, user, null);
+        AccessDecisionContext decisionContext = new AccessDecisionContext(session, realm, client, user, resource, AccessDecisionContext.ACTION_CHECK_ACCESS, null);
         AccessDecision accessDecision = accessPolicyProvider.evaluate(decisionContext);
 
         if (accessDecision.isAllowed()) {

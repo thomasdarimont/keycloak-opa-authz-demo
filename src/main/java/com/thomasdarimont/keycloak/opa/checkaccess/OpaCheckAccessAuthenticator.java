@@ -4,6 +4,7 @@ import com.google.auto.service.AutoService;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecision;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecisionContext;
 import com.thomasdarimont.keycloak.accessmgmt.AccessPolicyProvider;
+import com.thomasdarimont.keycloak.accessmgmt.RealmResource;
 import com.thomasdarimont.keycloak.opa.config.AuthenticatorConfig;
 import com.thomasdarimont.keycloak.opa.config.ConfigWrapper;
 import com.thomasdarimont.keycloak.support.AuthenticatorUtils;
@@ -51,7 +52,15 @@ public class OpaCheckAccessAuthenticator implements Authenticator {
 
         AccessPolicyProvider accessPolicyProvider = session.getProvider(AccessPolicyProvider.class, OpaAccessPolicyProvider.ID);
         ConfigWrapper authenticatorConfigWrapper = getAuthenticatorConfigWrapper(context);
-        AccessDecisionContext decisionContext = new AccessDecisionContext(session, realm, client, user, authenticatorConfigWrapper);
+
+        RealmResource resource = RealmResource.builder() //
+                .id(client.getId()) //
+                .name(client.getClientId()) //
+                .type("client") //
+                .path(realm.getName() + "/clients/" + client.getId()) //
+                .build();
+
+        AccessDecisionContext decisionContext = new AccessDecisionContext(session, realm, client, user, resource, AccessDecisionContext.ACTION_CHECK_ACCESS, authenticatorConfigWrapper);
         AccessDecision accessDecision = accessPolicyProvider.evaluate(decisionContext);
 
         if (accessDecision.isAllowed()) {

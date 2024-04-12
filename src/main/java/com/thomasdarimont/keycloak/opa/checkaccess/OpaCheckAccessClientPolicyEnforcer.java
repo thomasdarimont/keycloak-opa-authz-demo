@@ -4,6 +4,7 @@ import com.google.auto.service.AutoService;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecision;
 import com.thomasdarimont.keycloak.accessmgmt.AccessDecisionContext;
 import com.thomasdarimont.keycloak.accessmgmt.AccessPolicyProvider;
+import com.thomasdarimont.keycloak.accessmgmt.RealmResource;
 import com.thomasdarimont.keycloak.opa.config.MapConfig;
 import jakarta.ws.rs.core.Response;
 import lombok.extern.jbosslog.JBossLog;
@@ -11,6 +12,7 @@ import org.keycloak.Config;
 import org.keycloak.events.Errors;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
+import org.keycloak.models.UserModel;
 import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.provider.ProviderConfigurationBuilder;
 import org.keycloak.representations.idm.ClientPolicyExecutorConfigurationRepresentation;
@@ -54,16 +56,17 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
     public void executeOnEvent(ClientPolicyContext context) throws ClientPolicyException {
 
         ClientPolicyEvent event = context.getEvent();
+        var sessionContext = session.getContext();
         switch (event) {
             case RESOURCE_OWNER_PASSWORD_CREDENTIALS_RESPONSE: {
                 log.debugf("OPA: Check Access for grant_type: password");
-                checkAccess(createAccessDecisionContextForDirectAccessGrant());
+                checkAccess(createAccessDecisionContext(sessionContext.getAuthenticationSession().getAuthenticatedUser()));
             }
             break;
 
             case SERVICE_ACCOUNT_TOKEN_REQUEST: {
                 log.debugf("OPA: Check Access for grant_type: client_credentials");
-                checkAccess(createAccessDecisionContextForClientCredentialsGrant());
+                checkAccess(createAccessDecisionContext(session.users().getServiceAccount(sessionContext.getClient())));
             }
             break;
         }
@@ -79,23 +82,19 @@ public class OpaCheckAccessClientPolicyEnforcer implements ClientPolicyExecutorP
         }
     }
 
-    private AccessDecisionContext createAccessDecisionContextForDirectAccessGrant() {
+    private AccessDecisionContext createAccessDecisionContext(UserModel user) {
         var context = session.getContext();
         var realm = context.getRealm();
         var client = context.getClient();
-        var authSession = context.getAuthenticationSession();
-        var user = authSession.getAuthenticatedUser();
         var configWrapper = new MapConfig((Map<String, String>) (Object) config.getConfigAsMap());
-        return new AccessDecisionContext(session, realm, client, user, configWrapper);
-    }
+        var resource = RealmResource.builder() //
+                .id(client.getId()) //
+                .name(client.getClientId()) //
+                .type("client") //
+                .path(realm.getName() + "/clients/" + client.getId()) //
+                .build();
 
-    private AccessDecisionContext createAccessDecisionContextForClientCredentialsGrant() {
-        var context = session.getContext();
-        var realm = context.getRealm();
-        var client = context.getClient();
-        var serviceAccountUser = session.users().getServiceAccount(client);
-        var configWrapper = new MapConfig((Map<String, String>) (Object) config.getConfigAsMap());
-        return new AccessDecisionContext(session, realm, client, serviceAccountUser, configWrapper);
+        return new AccessDecisionContext(session, realm, client, user, resource, AccessDecisionContext.ACTION_CHECK_ACCESS, configWrapper);
     }
 
     @AutoService(ClientPolicyExecutorProviderFactory.class)
