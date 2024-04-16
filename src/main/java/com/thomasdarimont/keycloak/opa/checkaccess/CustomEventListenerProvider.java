@@ -20,17 +20,24 @@ import jakarta.ws.rs.core.Response;
 import lombok.extern.jbosslog.JBossLog;
 import org.keycloak.Config;
 import org.keycloak.events.Errors;
-import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.provider.ProviderConfigurationBuilder;
-import org.keycloak.representations.idm.ClientPolicyExecutorConfigurationRepresentation;
+import org.keycloak.representations.idm.ClientPolicyConditionConfigurationRepresentation;
 import org.keycloak.services.clientpolicy.ClientPolicyContext;
 import org.keycloak.services.clientpolicy.ClientPolicyEvent;
 import org.keycloak.services.clientpolicy.ClientPolicyException;
 import org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProvider;
 import org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory;
+import org.keycloak.services.ForbiddenException;
 import java.util.Map;
+import java.util.Collections;
+import jakarta.ws.rs.core.Response.Status;
+import jakarta.ws.rs.WebApplicationException;
+import com.google.auto.service.AutoService;
+import com.thomasdarimont.keycloak.opa.config.AuthenticatorConfig;
+import com.thomasdarimont.keycloak.opa.config.ConfigWrapper;
+import com.thomasdarimont.keycloak.support.AuthenticatorUtils;
 
 
 public class CustomEventListenerProvider
@@ -41,32 +48,44 @@ public class CustomEventListenerProvider
     public static final String PROVIDER_ID = "custom-event-listener";
     private final KeycloakSession session;
     private final RealmProvider model;
-    private ClientPolicyExecutorConfigurationRepresentation config;
+    private ClientPolicyConditionConfigurationRepresentation config;
 
     public CustomEventListenerProvider(KeycloakSession session) {
         this.session = session;
         this.model = session.realms();
     }
     
-    @Override
+    
+    public void setupConfiguration(ClientPolicyConditionConfigurationRepresentation configuration) {
+        this.config = configuration;
+    }
+    
+    
     public void onEvent(Event event) {
         var sessionContext = session.getContext();
-        try {
-            log.debugf("New %s Event", event.getType());
-            log.debugf("onEvent-> %s", toString(event));
-
-            if (EventType.PERMISSION_TOKEN.equals(event.getType())) {
+       
+        log.debugf("New %s Event", event.getType());
+        log.debugf("onEvent-> %s", toString(event));
+        try{
+            if (EventType.PERMISSION_TOKEN.equals(event.getType()) || EventType.PERMISSION_TOKEN_ERROR.equals(event.getType())) {
                 event.getDetails().forEach((key, value) -> log.debugf("%s : %s", key, value));
                 log.debugf("OPA: PERMISSION_TOKEN");
                 RealmModel realm = this.model.getRealm(event.getRealmId());
                 UserModel user = this.session.users().getUserById(realm, event.getUserId());
                 sendUserData(user);
-                checkAccess(createAccessDecisionContext(session.users().getServiceAccount(sessionContext.getClient())));
+                checkAccess(createAccessDecisionContext(user));
             }
-        } catch (ClientPolicyException e) {
-            log.error("Error en el evento: " + e.getMessage(), e);
+                
+        } catch (ClientPolicyException e){
+            log.debugf("Access not authorized...");
+            Response challengeResponse = Response.status(Response.Status.FORBIDDEN)
+                    .entity("{\"error\": \"access_denied\", \"error_description\": \"" + e.getMessage() + "\"}")
+                    .build();
+            throw new ForbiddenException("Access Denied", challengeResponse);
         }
+
     }
+    
 
     public void checkAccess(AccessDecisionContext decisionContext) throws ClientPolicyException {
 
@@ -82,7 +101,8 @@ public class CustomEventListenerProvider
         var context = session.getContext();
         var realm = context.getRealm();
         var client = context.getClient();
-        var configWrapper = new MapConfig((Map<String, String>) (Object) config.getConfigAsMap());
+        var configMap = config != null ? config.getConfigAsMap() : Collections.emptyMap();
+        var configWrapper = new MapConfig((Map<String, String>) (Object) configMap);
         var resource = RealmResource.builder() //
                 .id(client.getId()) //
                 .name(client.getClientId()) //
@@ -118,10 +138,9 @@ public class CustomEventListenerProvider
                         "\"lastName\":\"" + user.getLastName() + "\"," +
                         "}";
         try {
-            Client.postService(data);
-            log.debug("A new user has been created and post API");
+            log.debugf("User data: %s", data);
         } catch (Exception e) {
-            log.errorf("Failed to call API: %s", e);
+            log.errorf("Failed to send user data: %s", e);
         }
     }
 
