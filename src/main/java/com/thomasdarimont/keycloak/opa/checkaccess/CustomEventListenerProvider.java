@@ -38,7 +38,12 @@ import com.google.auto.service.AutoService;
 import com.thomasdarimont.keycloak.opa.config.AuthenticatorConfig;
 import com.thomasdarimont.keycloak.opa.config.ConfigWrapper;
 import com.thomasdarimont.keycloak.support.AuthenticatorUtils;
-
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import lombok.extern.jbosslog.JBossLog;
+import org.keycloak.Config;
+import org.keycloak.services.messages.Messages;
+import org.keycloak.events.EventBuilder;
 
 public class CustomEventListenerProvider
         implements EventListenerProvider {
@@ -67,7 +72,7 @@ public class CustomEventListenerProvider
         log.debugf("New %s Event", event.getType());
         log.debugf("onEvent-> %s", toString(event));
         try{
-            if (EventType.PERMISSION_TOKEN.equals(event.getType()) || EventType.PERMISSION_TOKEN_ERROR.equals(event.getType())) {
+            if (EventType.PERMISSION_TOKEN.equals(event.getType())) {
                 event.getDetails().forEach((key, value) -> log.debugf("%s : %s", key, value));
                 log.debugf("OPA: PERMISSION_TOKEN");
                 RealmModel realm = this.model.getRealm(event.getRealmId());
@@ -78,14 +83,28 @@ public class CustomEventListenerProvider
                 
         } catch (ClientPolicyException e){
             log.debugf("Access not authorized...");
-            Response challengeResponse = Response.status(Response.Status.FORBIDDEN)
-                    .entity("{\"error\": \"access_denied\", \"error_description\": \"" + e.getMessage() + "\"}")
-                    .build();
-            throw new ForbiddenException("Access Denied", challengeResponse);
+            RealmModel realm = this.model.getRealm(event.getRealmId());
+            UserModel user = this.session.users().getUserById(realm, event.getUserId());
+            EventBuilder eventBuilder = new EventBuilder(realm, session);
+            eventBuilder.user(user)
+                        .detail("error", "permission_token_error")
+                        .event(EventType.PERMISSION_TOKEN_ERROR)
+                        .detail("realmId", realm.getId())
+                        .detail("userId", user.getId())
+                        .detail("username", user.getUsername())
+                        .error("Access denied");
+            
+            
+            response();
+            System.out.println("Closing...");
+            System.exit(1);
         }
 
     }
-    
+
+    public Response response(){
+        return Response.status(400).build();
+    }
 
     public void checkAccess(AccessDecisionContext decisionContext) throws ClientPolicyException {
 
