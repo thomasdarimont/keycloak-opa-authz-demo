@@ -44,33 +44,45 @@ import lombok.extern.jbosslog.JBossLog;
 import org.keycloak.Config;
 import org.keycloak.services.messages.Messages;
 import org.keycloak.events.EventBuilder;
+import org.keycloak.events.EventListenerTransaction;
+import org.keycloak.services.ErrorResponse;
+import org.keycloak.common.util.StackUtil;
+
+import org.keycloak.models.KeycloakContext;
+import org.keycloak.sessions.AuthenticationSessionModel;
+import org.keycloak.utils.StringUtil;
+
+
+
 
 public class CustomEventListenerProvider
         implements EventListenerProvider {
 
     private static final Logger log = Logger.getLogger(CustomEventListenerProvider.class);
-
     public static final String PROVIDER_ID = "custom-event-listener";
     private final KeycloakSession session;
     private final RealmProvider model;
     private ClientPolicyConditionConfigurationRepresentation config;
+    private EventListenerTransaction tx = new EventListenerTransaction(null, this::execute);
 
     public CustomEventListenerProvider(KeycloakSession session) {
         this.session = session;
         this.model = session.realms();
+        this.session.getTransactionManager().enlistAfterCompletion(tx);
     }
     
-    
+
     public void setupConfiguration(ClientPolicyConditionConfigurationRepresentation configuration) {
         this.config = configuration;
     }
     
     
     public void onEvent(Event event) {
+        
         var sessionContext = session.getContext();
        
         log.debugf("New %s Event", event.getType());
-        log.debugf("onEvent-> %s", toString(event));
+        log.debugf("onEvent-> %s", logEvent(event));
         try{
             if (EventType.PERMISSION_TOKEN.equals(event.getType())) {
                 event.getDetails().forEach((key, value) -> log.debugf("%s : %s", key, value));
@@ -94,16 +106,14 @@ public class CustomEventListenerProvider
                         .detail("username", user.getUsername())
                         .error("Access denied");
             
+            tx.addEvent(event);
             
-            response();
-            System.out.println("Closing...");
-            System.exit(1);
         }
 
     }
-
-    public Response response(){
-        return Response.status(400).build();
+    
+    public void execute(Event event){
+        throw new WebApplicationException("OPA Access Check failed", Response.Status.FORBIDDEN);
     }
 
     public void checkAccess(AccessDecisionContext decisionContext) throws ClientPolicyException {
@@ -138,7 +148,7 @@ public class CustomEventListenerProvider
         log.debugf("Resource path: %s", adminEvent.getResourcePath());
         log.debugf("Resource type: %s", adminEvent.getResourceType());
         log.debugf("Operation type: %s", adminEvent.getOperationType());
-        log.debugf("AdminEvent.toString(): %s", toString(adminEvent));
+        log.debugf("AdminEvent.toString(): %s", logAdminEvent(adminEvent, b));
         if (ResourceType.USER.equals(adminEvent.getResourceType())
                 && OperationType.CREATE.equals(adminEvent.getOperationType())) {
             RealmModel realm = this.model.getRealm(adminEvent.getRealmId());
@@ -162,13 +172,14 @@ public class CustomEventListenerProvider
             log.errorf("Failed to send user data: %s", e);
         }
     }
-
+    
 
     @Override
     public void close() {
+       
     }
 
-    private String toString(Event event) {
+    private String logEvent(Event event) {
 
         StringBuilder sb = new StringBuilder();
         sb.append("type=");
@@ -205,7 +216,7 @@ public class CustomEventListenerProvider
         return sb.toString();
     }
 
-    private String toString(AdminEvent event) {
+    private String logAdminEvent(AdminEvent event, boolean includeRepresentation) {
 
         RealmModel realm = this.model.getRealm(event.getRealmId());
 
@@ -244,4 +255,5 @@ public class CustomEventListenerProvider
 
         return sb.toString();
     }
+
 }
