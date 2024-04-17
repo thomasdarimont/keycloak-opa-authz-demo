@@ -20,39 +20,15 @@ import jakarta.ws.rs.core.Response;
 import lombok.extern.jbosslog.JBossLog;
 import org.keycloak.Config;
 import org.keycloak.events.Errors;
-import org.keycloak.models.KeycloakSessionFactory;
-import org.keycloak.provider.ProviderConfigProperty;
-import org.keycloak.provider.ProviderConfigurationBuilder;
 import org.keycloak.representations.idm.ClientPolicyConditionConfigurationRepresentation;
-import org.keycloak.services.clientpolicy.ClientPolicyContext;
-import org.keycloak.services.clientpolicy.ClientPolicyEvent;
 import org.keycloak.services.clientpolicy.ClientPolicyException;
-import org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProvider;
-import org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory;
-import org.keycloak.services.ForbiddenException;
 import java.util.Map;
 import java.util.Collections;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.WebApplicationException;
-import com.google.auto.service.AutoService;
-import com.thomasdarimont.keycloak.opa.config.AuthenticatorConfig;
 import com.thomasdarimont.keycloak.opa.config.ConfigWrapper;
-import com.thomasdarimont.keycloak.support.AuthenticatorUtils;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import lombok.extern.jbosslog.JBossLog;
-import org.keycloak.Config;
-import org.keycloak.services.messages.Messages;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.events.EventListenerTransaction;
-import org.keycloak.services.ErrorResponse;
-import org.keycloak.common.util.StackUtil;
-
-import org.keycloak.models.KeycloakContext;
-import org.keycloak.sessions.AuthenticationSessionModel;
-import org.keycloak.utils.StringUtil;
-
-
 
 
 public class CustomEventListenerProvider
