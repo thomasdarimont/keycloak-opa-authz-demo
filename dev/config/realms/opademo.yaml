@@ -390,8 +390,8 @@ users:
         temporary: false
 
 # UC1: admin-console - check for realm role
-    realmRoles:
-      - "user"
+#    realmRoles:
+#      - "user"
 
 # UC2: app1 - check for current client role
 #    clientRoles:
