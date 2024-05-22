@@ -11,7 +11,6 @@ default allow := false
 
 # Access Policy: Authentication
 allow if{
-	kc.isClient("Apisix")
 	kc.isProtocol("openid-connect")
 	kc.isRealm("opademo")
 	kc.isGrantType("password")
@@ -22,9 +21,7 @@ allow if{
 allow if {
 	input.resource.resourcePath == "opademo/clients/168609d0-a202-4355-a081-04b03b13b9aa"
 	kc.isRealm("opademo")
-	kc.isClient("Apisix")
   	kc.hasRealmRole("admin")
-	input.subject.username == "data_product_owner"
 }
 
 # Access Policy: Account-Console
