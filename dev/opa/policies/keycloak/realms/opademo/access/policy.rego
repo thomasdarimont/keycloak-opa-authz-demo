@@ -17,7 +17,7 @@ allow if{
 	kc.hasRealmRole("admin")
 }
 
-# Access Policy: Onboard
+# Access Policy: Resource
 allow if {
 	input.resource.resourcePath == "opademo/clients/168609d0-a202-4355-a081-04b03b13b9aa"
 	kc.isRealm("opademo")
